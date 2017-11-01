@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <!--    <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+          <title>Мэдээллийн сүлжээ, аюулгүй байдлын салбар </title>
+{% load staticfiles %}
+        <!-- CSS -->
+        <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+        <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'assets/font-awesome/css/font-awesome.min.css' %}">
+		<link rel="stylesheet" href="{% static 'assets/css/form-elements.css' %}">
+
+       <!--  <link rel="shortcut icon" href="{% static 'assets/ico/favicon.png' %}"> -->
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% static 'assets/ico/apple-touch-icon-144-precomposed.png' %}">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% static 'assets/ico/apple-touch-icon-114-precomposed.png' %}">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% static 'assets/ico/apple-touch-icon-72-precomposed.png' %}">
+        <link rel="apple-touch-icon-precomposed" href="{% static 'assets/ico/apple-touch-icon-57-precomposed.png' %}">
+
+    </head>
+
+    <body>
+
+        <!-- Top content -->
+        <div class="top-content">
+        	
+            <div class="inner-bg">
+                <div class="container">
+                	
+                    
+                    <div class="row">
+                        <div class="col-sm-5">
+                        	
+                        	<div class="form-box">
+	                        	<div class="form-top">
+	                        		<div class="form-top-left">
+	                        			<h3>Нэвтрэх хэсэг</h3>
+	                            		<p>Код нууц үгээ оруул:</p>
+	                        		</div>
+	                        		<div class="form-top-right">
+	                        			<i class="fa fa-key"></i>
+	                        		</div>
+	                            </div>
+	                            <div class="form-bottom">
+                                 	<form method="POST">
+                                          {% csrf_token %}
+                                           {{ form }}
+                                           <input type="hidden" name="tmp", value="login">
+				                    	<div class="form-group">
+				                    		<label class="sr-only" for="form-username">Username</label>
+				                        	<input type="text" name="code" placeholder="Код..." class="form-username form-control" id="form-username" pattern="(([B][0-9]{9}$)|([J][\.][S][A][\d][\d][D][\d]{3}$|[A-Z][\.][A-Z]{2}[\d][\d]))" title="алдаатай код байна">
+				                        </div>
+				                        <div class="form-group">
+				                        	<label class="sr-only" for="form-password">Password</label>
+				                        	<input type="password" name="password" placeholder="Нууц үг..." class="form-password form-control" id="form-password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" 
+				                        		title="бүтэц буруу">
+				                        </div>                                        
+				                        <button type="submit" class="btn">Нэвтрэх!</button>
+                                        <p> {{ message }}</p>
+				                    </form>
+			                    </div>
+		                    </div>
+		                
+	                        
+                        </div>
+                        
+                        <div class="col-sm-1 middle-border"></div>
+                        <div class="col-sm-1"></div>
+                        	
+                        <div class="col-sm-5">
+                        	
+                        	<div class="form-box">
+                        		<div class="form-top">
+	                        		<div class="form-top-left">
+	                        			<h3>Яг одоо бүртгүүлэх</h3>
+	                            		<p>Мэдээллээ үнэн зөв оруул:</p>
+	                        		</div>
+	                        		<div class="form-top-right">
+	                        			<i class="fa fa-pencil"></i>
+	                        		</div>
+	                            </div>
+	                            <div class="form-bottom">
+				                    <form  method="POST" >
+				                    	{% csrf_token %}
+                                           {{ form }}
+                                           <input type="hidden" name="tmp", value="logup">
+				                    	<div class="form-group">
+				                    		<label class="sr-only" for="form-first-name">Нэр</label>
+				                        	<input type="text" name="code" placeholder="Код..." class="form-first-name form-control" id="form-first-name" pattern="(([B][0-9]{9}$)|([J][\.][S][A][\d][\d][D][\d]{3}$|[A-Z][\.][A-Z]{2}[\d][\d]))"  title="алдаатай код байна">
+
+				                        </div>
+				                        <div class="form-group">
+				                    		<label class="sr-only" for="form-first-name">Нэр</label>
+				                        	<input type="text" name="lname" placeholder="Овог ..." class="form-first-name form-control" id="form-first-name" >
+				                        </div>
+				                         <div class="form-group">
+				                    		<label class="sr-only" for="form-first-name">Нэр</label>
+				                        	<input type="text" name="fname" placeholder="Нэр..." class="form-first-name form-control" id="form-first-name" >
+				                        </div>
+				                        <div class="form-group">
+				                        	<label class="sr-only" for="form-email"></label>
+				                        	<input type="text" name="mail" placeholder="Мэйл хаяг..." class="form-email form-control" id="form-email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="алдаатай мэйл байна">
+				                        </div>
+				                           <div class="form-group">
+				                        	<label class="sr-only" for="form-last-name"></label>
+				                        	<input 
+				                        		type="text" 
+				                        		name="phone" 
+				                        		placeholder="Утас..." 
+				                        		class="form-last-name form-control" 
+				                        		id="phone"
+				                        		pattern="^[\d]{8}$" 
+				                        		title="бүтэц буруу">
+				                        </div>
+				                        <div class="form-group">
+				                        	<label class="sr-only" for="form-last-name"></label>
+				                        	<input 
+				                        		type="password" 
+				                        		name="password" 
+				                        		placeholder="Нууц үг..." 
+				                        		class="form-last-name form-control" 
+				                        		id="one"
+				                        		pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" 
+				                        		title="бүтэц буруу">
+				                        </div>
+				                        
+				                       	<div class="form-group">
+				                        	<label class="sr-only" for="form-last-name"></label>
+				                        	<input 
+				                        		type="password" 
+				                        		name="form-last-name" 
+				                        		placeholder="Нууц үг баталгаажуулах..." 
+				                        		class="form-last-name form-control" 
+				                        		id="two"
+				                        		pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" 
+				                        		title="бүтэц буруу"
+				                        		onChange="checkPasswordMatch()">
+				                        </div>
+				                        <div class="registrationFormAlert" id="divCheckPasswordMatch">
+				                       <script type="text/javascript">
+				                       	function checkPasswordMatch() {
+											    var password = $("#one").val();
+											    var confirmPassword = $("#two").val();
+
+											    if (password != confirmPassword)
+											       	alert('нууц үг зөрсөн');
+											}
+				                       </script>
+				                        <button type="submit" class="btn">Бүртгүүлэх!</button>
+				                        <p> {{ log_up_sms }}</p>
+				                    </form>
+			                    </div>
+                        	</div>
+                        	
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            
+        </div>
+
+
+
+        <!-- Javascript -->
+        <script src="{% static 'assets/js/jquery-1.11.1.min.js' %}"></script>
+        <script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'assets/js/scripts.js' %}"></script>
+
+    </body>
+
+</html>

@@ -1,0 +1,57 @@
+    <!-- row -->
+      <div class="row">
+        <div class="col-md-12">
+          <!-- The time line -->
+          <ul class="timeline">
+         
+            {% if view_plan %}
+            {% for item in view_plan %}
+
+
+             {% if "xx" != item.start_date %}
+            <!-- timeline time label -->
+            <li class="time-label">
+                  <span class="bg-red">
+                   
+                   {{item.start_date}}
+                    
+                  </span>
+            </li>
+            {% endif %}
+            <!-- /.timeline-label -->
+            <!-- timeline item -->
+            <li>
+              <i class="fa fa-envelope bg-blue"></i>
+
+              <div class="timeline-item">
+                <span class="time"><i class="fa fa-clock-o"></i> {{item.start_time}}</span>
+
+                <h3 class="timeline-header"><a href="#">{{item.topic}} </a> </h3>
+
+                <div class="timeline-body">
+                  {{item.note}}
+                </div>
+                <div class="timeline-footer">
+                  <a class="btn btn-primary btn-xs">&nbsp; &nbsp; Эцсийн хугцаа: &nbsp; &nbsp; {{item.finish_date}} &nbsp; &nbsp;{{item.finish_time}}&nbsp; &nbsp;</a>
+                
+                </div>
+              </div>
+            </li>
+            <!-- END timeline item -->
+            {% endfor%}
+            {% endif %}
+
+
+
+
+
+
+          
+            <li>
+              <i class="fa fa-clock-o bg-gray"></i>
+            </li>
+          </ul>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->

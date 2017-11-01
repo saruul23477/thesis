@@ -1,0 +1,150 @@
+
+
+ 
+
+ <section class="col-lg-7 connectedSortable">
+    <!-- row -->
+      <div class="row">
+        <div class="col-md-12">
+          <!-- The time line -->
+          <ul class="timeline">
+         
+            {% if view_plan %}
+            {% for item in view_plan %}
+
+
+             {% if "xx" != item.start_date %}
+            <!-- timeline time label -->
+            <li class="time-label">
+                  <span class="bg-red">
+                   
+                   {{item.start_date}}
+                    
+                  </span>
+            </li>
+            {% endif %}
+            <!-- /.timeline-label -->
+            <!-- timeline item -->
+            <li>
+              <i class="fa fa-envelope bg-blue"></i>
+
+              <div class="timeline-item">
+                <span class="time"><i class="fa fa-clock-o"></i> {{item.start_time}}</span>
+
+                <h3 class="timeline-header"><a href="#">{{item.topic}} </a> </h3>
+
+                <div class="timeline-body">
+                  {{item.note}}
+                </div>
+                <div class="timeline-footer">
+                  <a class="btn btn-primary btn-xs">&nbsp; &nbsp; Эцсийн хугцаа: &nbsp; &nbsp; {{item.finish_date}} &nbsp; &nbsp;{{item.finish_time}}&nbsp; &nbsp;</a>
+                  <a href="create_plan?id={{item.plan_id}}" class="btn btn-danger btn-xs">Устгах</a>
+                </div>
+              </div>
+            </li>
+            <!-- END timeline item -->
+            {% endfor%}
+            {% endif %}
+
+
+
+
+
+
+          
+            <li>
+              <i class="fa fa-clock-o bg-gray"></i>
+            </li>
+          </ul>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+</section>
+<section class="col-lg-5 connectedSortable">
+
+     
+          <div class="box box-danger">
+            <div class="box-header">
+              <h3 class="box-title">Хөтөлбөр нэмэх</h3>
+            </div>
+             <form action="create_plan" method="POST"> 
+               {% csrf_token %}
+              {{ form }}
+              <div class="box-body">
+                <div class="form-group">
+                    <label>Ажлын сэдэв</label>
+                    <input type="text" name="topic" class="form-control" placeholder="Ажлын сэдэв ...">
+                  </div>
+                 <div class="form-group">
+                    <label>Үйл ажиллагаа, тавигдах шаардлага</label>
+                    <textarea class="form-control" name="note" rows="3" placeholder="Үйл ажиллагаа, тавигдах шаардлага, дэлгэрэнгүй тайлбар ..."></textarea>
+                  </div>
+
+                  
+                <!-- Date dd/mm/yyyy -->
+                <div class="form-group">
+                  <label>Эхлэх хугцаа</label>
+
+                  <div class="input-group">
+                    <div class="input-group-addon">
+                      <i class="fa fa-calendar"></i>
+                    </div>
+                    <input id="date" type="date" name="s_date" class="form-control" placeholder="yyyy-mm-dd"  onChange="isValidDate()">
+
+                  </div>
+                
+                  <!-- /.input group -->
+                </div>
+                <!-- /.form group -->
+
+                <!-- Date mm/dd/yyyy -->
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-addon">
+                      <i class="fa fa-clock-o"></i>
+                    </div>
+                    <input id="time" type="text" name="s_time" class="form-control" placeholder="HH:mm" onChange="isValidtime()">
+                  </div>
+                  <!-- /.input group -->
+                </div>
+                  <div class="form-group">
+                  <label>Дуусах хугцаа</label>
+
+                  <div class="input-group">
+                    <div class="input-group-addon">
+                      <i class="fa fa-calendar"></i>
+                    </div>
+                    <input id="date" type="date"  name="f_date" class="form-control" placeholder="mm/dd/yyyy"  onChange="isValidDate()">
+
+                  </div>
+                
+                  <!-- /.input group -->
+                </div>
+                <!-- /.form group -->
+
+                <!-- Date mm/dd/yyyy -->
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-addon">
+                      <i class="fa fa-clock-o"></i>
+                    </div>
+                    <input id="time" type="text" name="f_time" class="form-control" placeholder="HH:mm" onChange="isValidtime()">
+                  </div>
+                  <!-- /.input group -->
+                </div>
+               <div class="box-footer">
+                  <button type="submit" class="btn btn-primary">Хадгалах</button>
+                </div>
+              </form>
+              
+
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+
+
+</section>
+  {% load staticfiles %}
+<script src="{% static 'plan.js' %}"></script>
